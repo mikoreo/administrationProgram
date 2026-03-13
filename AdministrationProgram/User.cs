@@ -15,11 +15,7 @@ namespace AdministrationProgram
         private string _email;
         private int _age;
 
-        public string Email
-        {
-            get { return _email; }
-            set { _email = value; }
-        }
+
 
         public User(string name, string adress, string phoneNumber, string email, int age)
         {
