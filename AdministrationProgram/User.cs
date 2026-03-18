@@ -60,5 +60,14 @@ namespace AdministrationProgram
         {
             return _age;
         }
+        public void SetPhoneNumber(string number)
+        {
+            _phoneNumber = number;
+        }
+
+        public string GetPhoneNumber()
+        {
+            return _phoneNumber;
+        }
     }
 }
