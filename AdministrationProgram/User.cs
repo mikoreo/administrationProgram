@@ -17,12 +17,11 @@ namespace AdministrationProgram
 
 
 
-        public User(string name, string adress, string phoneNumber, string email, int age)
+        public User(string name, string phoneNumber, string email, int age)
         {
             _name = name;
-            _adress = adress;
             _phoneNumber = phoneNumber;
-            _email = email;
+            SetEmail(email);
             _age = age;
         }
 
@@ -34,7 +33,7 @@ namespace AdministrationProgram
             }
             else
             {
-                Console.WriteLine("ERROR, NIET GELDIG");
+                Console.WriteLine("ERROR, NIET GELDIGE EMAIL");
             }
         }
 
@@ -51,6 +50,15 @@ namespace AdministrationProgram
         public string GetName()
         {
             return _name;
+        }
+
+        public void SetAge(int age)
+        {
+            _age = age;
+        }
+        public int GetAge()
+        {
+            return _age;
         }
     }
 }

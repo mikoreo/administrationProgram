@@ -9,11 +9,27 @@ namespace AdministrationProgram
     internal class Program
     {
         static void Main(string[] args)
+
         {
-            User hoi = new User("michael", "dik", "111111111111", "hoi@hoi.nl", 16);
-            hoi.SetEmail("kees@gmail.com");
-            Console.WriteLine(hoi.GetEmail());
-            Console.WriteLine(hoi.GetName());
+            Console.WriteLine("insert name");
+            string name = Console.ReadLine();
+
+            Console.WriteLine("insert email");
+            string email = Console.ReadLine();
+
+            Console.WriteLine("insert age");
+            int age = int.Parse(Console.ReadLine());
+
+            User NewUser = new User(name, "number", email, age);
+
+            Console.Clear();
+            Console.WriteLine(NewUser);
+
+            
+            
+            Console.WriteLine(NewUser.GetName());
+            Console.WriteLine(NewUser.GetEmail());
+            Console.WriteLine(NewUser.GetAge());
         }
     }
 }
