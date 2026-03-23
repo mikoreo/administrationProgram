@@ -8,6 +8,8 @@ namespace AdministrationProgram
 {
     internal class UserManager
     {
+        private readonly List<User> User = new List<User>();
 
+        public void 
     }
 }

@@ -25,6 +25,12 @@ namespace AdministrationProgram
 
                 Console.WriteLine("Invalid input. Please choose 1, 2, or 3.");
             }
-        } 
+            //switch (userInput)
+            //{
+            //    case 1:
+
+            //break;
+            } 
+
     }
 }
