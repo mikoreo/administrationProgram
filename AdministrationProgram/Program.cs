@@ -11,25 +11,27 @@ namespace AdministrationProgram
         static void Main(string[] args)
 
         {
-            Console.WriteLine("insert name");
-            string name = Console.ReadLine();
+            Menu menu = new Menu();
+            menu.mainMenu();
+            //Console.WriteLine("insert name");
+            //string name = Console.ReadLine();
 
-            Console.WriteLine("insert email");
-            string email = Console.ReadLine();
+            //Console.WriteLine("insert email");
+            //string email = Console.ReadLine();
 
-            Console.WriteLine("insert age");
-            int age = int.Parse(Console.ReadLine());
+            //Console.WriteLine("insert age");
+            //int age = int.Parse(Console.ReadLine());
 
-            User NewUser = new User(name, "number", email, age);
+            //User NewUser = new User(name, "number", email, age);
 
-            Console.Clear();
-            Console.WriteLine(NewUser);
+            //Console.Clear();
+            //Console.WriteLine(NewUser);
 
             
             
-            Console.WriteLine(NewUser.GetName());
-            Console.WriteLine(NewUser.GetEmail());
-            Console.WriteLine(NewUser.GetAge());
+            //Console.WriteLine(NewUser.GetName());
+            //Console.WriteLine(NewUser.GetEmail());
+            //Console.WriteLine(NewUser.GetAge());
         }
     }
 }
