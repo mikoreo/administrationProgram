@@ -14,7 +14,38 @@ namespace AdministrationProgram
         private string _phoneNumber;
         private string _email;
         private int _age;
-
+        public string Name
+        {
+            get
+            {
+                return _name;
+            }
+            private set => _name = value;
+        }
+        public string PhoneNumber
+        {
+            get
+            {
+                return _phoneNumber;
+            }
+            private set => _phoneNumber = value;
+        }
+        public string Email
+        {
+            get
+            {
+                return _email;
+            }
+            private set => _email = value;
+        }
+        public int Age
+        {
+            get
+            {
+                return _age;
+            }
+            private set => _age = value;
+        }
 
 
         public User(string name, string phoneNumber, string email, int age)
@@ -26,20 +57,9 @@ namespace AdministrationProgram
         }
 
 
-        //public void SetName(string name)
-        //{
-        //    _name = name;
-        //}
+  
 
-        //public void SetAge(int age)
-        //{
-        //    _age = age;
-        //}
- 
-        //public void SetPhoneNumber(string number)
-        //{
-        //    _phoneNumber = number;
-        //}
+    
 
    
     }

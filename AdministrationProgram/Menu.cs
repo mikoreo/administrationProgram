@@ -8,8 +8,11 @@ namespace AdministrationProgram
 {
     internal class Menu
     {
+
         public void mainMenu()
         {
+
+
             Console.WriteLine("Welcome, Please choose one of the options below:");
             Console.WriteLine("1. Add user.");
 
@@ -25,12 +28,50 @@ namespace AdministrationProgram
 
                 Console.WriteLine("Invalid input. Please choose 1, 2, or 3.");
             }
-            //switch (userInput)
-            //{
-            //    case 1:
+            switch (userInput)
+            {
+                case 1:
+                    AddUser();
+                    break;
+            }
+        }
 
-            //break;
-            } 
 
+
+        private UserManager _userManager = new UserManager();
+
+        private void AddUser()
+        {
+            Console.Write("Enter name: ");
+            string name = Console.ReadLine();
+
+            Console.WriteLine("Enter phone number: ");
+            string phoneNumber = Console.ReadLine();
+
+            Console.Write("Enter email: ");
+            string email = Console.ReadLine();
+            if (!email.Contains("@") && !email.Contains("."))
+            {
+                Console.WriteLine("invalid email");
+                return;
+            }
+
+            Console.Write("Enter age: ");
+            // Veiliger dan int.Parse:
+            if (!int.TryParse(Console.ReadLine(), out int age))
+            {
+                Console.WriteLine("invalid, try again.");
+                return;
+            }
+
+            // Maak het object aan (zorg dat de parameters kloppen met je User class!)
+            User newUser = new User(name, phoneNumber, email, age);
+
+            // VOEG TOE VIA DE MANAGER (niet rechtstreeks aan de lijst)
+            _userManager.AddUser(newUser);
+
+            Console.WriteLine("User added successfully!");
+        }
     }
-}
+    }
+

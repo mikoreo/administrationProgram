@@ -10,6 +10,9 @@ namespace AdministrationProgram
     {
         private readonly List<User> User = new List<User>();
 
-        public void 
+        public void AddUser(User newUser)
+        {
+            User.Add(newUser);
+        }
     }
 }
