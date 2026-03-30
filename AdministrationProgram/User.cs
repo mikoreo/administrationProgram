@@ -10,7 +10,6 @@ namespace AdministrationProgram
     internal class User
     {
         private string _name;
-        private string _adress;
         private string _phoneNumber;
         private string _email;
         private int _age;
