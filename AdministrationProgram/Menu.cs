@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,7 @@ namespace AdministrationProgram
 
             Console.WriteLine("Welcome, Please choose one of the options below:");
             Console.WriteLine("1. Add user.");
+            Console.WriteLine("2. show users");
 
 
             int userInput;
@@ -33,7 +35,12 @@ namespace AdministrationProgram
                 case 1:
                     AddUser();
                     break;
+
+                case 2:
+                    ShowUsers();
+                    break;
             }
+
         }
 
 
@@ -52,16 +59,16 @@ namespace AdministrationProgram
             string email = Console.ReadLine();
             if (!email.Contains("@") && !email.Contains("."))
             {
+                Console.Clear();
                 Console.WriteLine("invalid email");
-                return;
+                AddUser();
             }
 
             Console.Write("Enter age: ");
-            
             if (!int.TryParse(Console.ReadLine(), out int age))
             {
                 Console.WriteLine("invalid, try again.");
-                return;
+                AddUser();
             }
 
             
@@ -71,7 +78,46 @@ namespace AdministrationProgram
             _userManager.AddUser(newUser);
 
             Console.WriteLine("User added successfully!");
+            Console.WriteLine("type something to go back");
+            string goBack = Console.ReadLine();
+            if(goBack == "1")
+            {
+                Console.Clear();
+                mainMenu();
+            } else
+            {
+                Console.Clear();
+                mainMenu();
+            }
         }
+        private void ShowUsers()
+        {
+
+            List<User> allUsers = _userManager.GetUsers();
+
+
+            if (allUsers.Count == 0)
+            {
+                Console.WriteLine("The list is currently empty.");
+            }
+            else
+            {
+                foreach (User user in allUsers)
+                {
+                    Console.WriteLine($"Name: {user.Name} Age: {user.Age} Phone: {user.PhoneNumber}");
+                }
+            }
+                        Console.WriteLine("type 1 to go back");
+            string goBack = Console.ReadLine();
+            if(goBack == "1")
+            {
+                Console.Clear();
+                mainMenu();
+            }
+        }
+
+
     }
-    }
+}
+
 

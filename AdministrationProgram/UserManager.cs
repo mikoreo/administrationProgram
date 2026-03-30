@@ -14,5 +14,9 @@ namespace AdministrationProgram
         {
             User.Add(newUser);
         }
+        public List<User> GetUsers()
+        {
+            return User;
+        }
     }
 }
