@@ -57,17 +57,17 @@ namespace AdministrationProgram
             }
 
             Console.Write("Enter age: ");
-            // Veiliger dan int.Parse:
+            
             if (!int.TryParse(Console.ReadLine(), out int age))
             {
                 Console.WriteLine("invalid, try again.");
                 return;
             }
 
-            // Maak het object aan (zorg dat de parameters kloppen met je User class!)
+            
             User newUser = new User(name, phoneNumber, email, age);
 
-            // VOEG TOE VIA DE MANAGER (niet rechtstreeks aan de lijst)
+            
             _userManager.AddUser(newUser);
 
             Console.WriteLine("User added successfully!");
