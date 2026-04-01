@@ -12,66 +12,96 @@ namespace AdministrationProgram
 
         public void mainMenu()
         {
+            bool Running = true;
 
-
-            Console.WriteLine("Welcome, Please choose one of the options below:");
-            Console.WriteLine("1. Add user.");
-            Console.WriteLine("2. show users");
-
-
-            int userInput;
-            while (true)
+            if (Running == true)
             {
-                Console.Write("Your choice: ");
-                string input = Console.ReadLine();
+                Console.WriteLine("Welcome, Please choose one of the options below:");
+                Console.WriteLine("1. Add user.");
+                Console.WriteLine("2. show users");
+                Console.WriteLine("0. close program");
 
-                if (int.TryParse(input, out userInput) && userInput >= 1 && userInput <= 3)
-                    break;
 
-                Console.WriteLine("Invalid input. Please choose 1, 2, or 3.");
+                int userInput;
+                while (true)
+                {
+                    Console.Write("Your choice: ");
+                    string input = Console.ReadLine();
+
+                    if (int.TryParse(input, out userInput));
+                        break;
+                }
+                switch (userInput)
+                {
+                    case 1:
+                        AddUser();
+                        break;
+
+                    case 2:
+                        ShowUsers();
+                        break;
+                    case 0:
+                        Console.Clear();
+                        Console.WriteLine("type 0 again");
+                        Running = false;
+                        break;
+                    default:
+                        Console.Clear();
+                        Console.WriteLine("invalid, try again");
+                        mainMenu();
+                        break;
+                }
+
             }
-            switch (userInput)
-            {
-                case 1:
-                    AddUser();
-                    break;
-
-                case 2:
-                    ShowUsers();
-                    break;
-            }
-
         }
-
 
 
         private UserManager _userManager = new UserManager();
 
         private void AddUser()
         {
+            Console.Clear();
             Console.Write("Enter name: ");
             string name = Console.ReadLine();
 
             Console.WriteLine("Enter phone number: ");
             string phoneNumber = Console.ReadLine();
 
-            Console.Write("Enter email: ");
-            string email = Console.ReadLine();
-            if (!email.Contains("@") && !email.Contains("."))
+            string email;
+
+            while (true)
             {
-                Console.Clear();
-                Console.WriteLine("invalid email");
-                AddUser();
+                Console.Write("Enter email: ");
+                email = Console.ReadLine();
+
+                // De check: bevat het een @ EN een . ?
+                if (email.Contains("@") && email.Contains("."))
+                {
+                    break; 
+                }
+
+                
+                Console.WriteLine("Invalid email. An email must contain both '@' and '.'. Please try again.");
+            }
+            string ageInput;
+            int age;
+
+            while (true)
+            {
+                Console.Write("Enter age: ");
+                ageInput = Console.ReadLine();
+
+               
+                if (int.TryParse(ageInput, out age) && age > 0)
+                {
+                    break;
+                }
+
+                Console.WriteLine("Invalid age. Please enter a number higher than 0.");
             }
 
-            Console.Write("Enter age: ");
-            if (!int.TryParse(Console.ReadLine(), out int age))
-            {
-                Console.WriteLine("invalid, try again.");
-                AddUser();
-            }
 
-            
+
             User newUser = new User(name, phoneNumber, email, age);
 
             
