@@ -30,8 +30,14 @@ namespace AdministrationProgram
                     Console.Write("Your choice: ");
                     string input = Console.ReadLine();
 
-                    if (int.TryParse(input, out userInput));
+                    if (int.TryParse(input, out userInput))
+                    {
                         break;
+                    }
+                    else
+                    {
+                        Console.WriteLine("not a number. try again");
+                    }
                 }
                 switch (userInput)
                 {
@@ -41,7 +47,6 @@ namespace AdministrationProgram
                         break;
                     case 2:
                         ShowUsers();
-                        goBack();
                         break;
                     case 3:
                         deleteUsers();
@@ -53,7 +58,7 @@ namespace AdministrationProgram
                         break;
                     default:
                         Console.Clear();
-                        Console.WriteLine("invalid, try again");
+                        Console.WriteLine("invalid choice, try again");
                         mainMenu();
                         break;
                 }
@@ -128,20 +133,20 @@ namespace AdministrationProgram
 
             if (allUsers.Count == 0)
             {
-                Console.WriteLine("The list is currently empty.");
+                Console.WriteLine("The list is empty.");
             }
             else
             {
                 foreach (User user in allUsers)
                 {
-                    Console.WriteLine($"ID: {user.Id} Name: {user.Name} Age: {user.Age} Phone: {user.PhoneNumber}");
+                    Console.WriteLine($"ID: {user.Id} Name: {user.Name} Age: {user.Age} Phonenumber: {user.PhoneNumber}");
                 }
             }
             
         }
         private void deleteUsers()
         {
-            Console.Clear();
+            
             ShowUsers();
 
             string idInput;
@@ -159,12 +164,25 @@ namespace AdministrationProgram
             }
             else
             {
+                deleteUsers();
                 Console.WriteLine("Invalid input. Please enter a number.");
+                
             }
 
             goBack();
 
 
+        }
+
+        private void searchUser()
+        {
+            Console.Clear();
+            Console.Write("Enter age to filter: ");
+            if (!int.TryParse(Console.ReadLine(), out int searchAge))
+            {
+                Console.WriteLine("Invalid age.");
+                return;
+            }
         }
 
         private void goBack()
