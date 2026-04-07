@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 
 namespace AdministrationProgram
 {
+
     internal class Menu
     {
-
+        private int id = 0;
         public void mainMenu()
         {
             bool Running = true;
@@ -19,6 +20,7 @@ namespace AdministrationProgram
                 Console.WriteLine("Welcome, Please choose one of the options below:");
                 Console.WriteLine("1. Add user.");
                 Console.WriteLine("2. show users");
+                Console.WriteLine("3. delete users0");
                 Console.WriteLine("0. close program");
 
 
@@ -34,11 +36,15 @@ namespace AdministrationProgram
                 switch (userInput)
                 {
                     case 1:
+                        id++;
                         AddUser();
                         break;
-
                     case 2:
                         ShowUsers();
+                        goBack();
+                        break;
+                    case 3:
+                        deleteUsers();
                         break;
                     case 0:
                         Console.Clear();
@@ -54,13 +60,17 @@ namespace AdministrationProgram
 
             }
         }
-
+        
 
         private UserManager _userManager = new UserManager();
 
         private void AddUser()
         {
             Console.Clear();
+
+            
+            
+
             Console.Write("Enter name: ");
             string name = Console.ReadLine();
 
@@ -74,14 +84,13 @@ namespace AdministrationProgram
                 Console.Write("Enter email: ");
                 email = Console.ReadLine();
 
-                // De check: bevat het een @ EN een . ?
                 if (email.Contains("@") && email.Contains("."))
                 {
                     break; 
                 }
 
                 
-                Console.WriteLine("Invalid email. An email must contain both '@' and '.'. Please try again.");
+                Console.WriteLine("Invalid email. Please try again.");
             }
             string ageInput;
             int age;
@@ -102,27 +111,18 @@ namespace AdministrationProgram
 
 
 
-            User newUser = new User(name, phoneNumber, email, age);
+            User newUser = new User(id, name, phoneNumber, email, age);
 
             
             _userManager.AddUser(newUser);
 
             Console.WriteLine("User added successfully!");
-            Console.WriteLine("type something to go back");
-            string goBack = Console.ReadLine();
-            if(goBack == "1")
-            {
-                Console.Clear();
-                mainMenu();
-            } else
-            {
-                Console.Clear();
-                mainMenu();
-            }
+
+            goBack();
         }
         private void ShowUsers()
         {
-
+            Console.Clear();
             List<User> allUsers = _userManager.GetUsers();
 
 
@@ -134,18 +134,55 @@ namespace AdministrationProgram
             {
                 foreach (User user in allUsers)
                 {
-                    Console.WriteLine($"Name: {user.Name} Age: {user.Age} Phone: {user.PhoneNumber}");
+                    Console.WriteLine($"ID: {user.Id} Name: {user.Name} Age: {user.Age} Phone: {user.PhoneNumber}");
                 }
             }
-                        Console.WriteLine("type 1 to go back");
+            
+        }
+        private void deleteUsers()
+        {
+            Console.Clear();
+            ShowUsers();
+
+            string idInput;
+            int idDelete;
+
+            
+            
+            Console.Write("Enter ID you want to delete: ");
+            idInput = Console.ReadLine();
+
+
+            if (int.TryParse(idInput, out idDelete))
+            {
+                _userManager.RemoveById(idDelete);
+            }
+            else
+            {
+                Console.WriteLine("Invalid input. Please enter a number.");
+            }
+
+            goBack();
+
+
+        }
+
+        private void goBack()
+        {
+            
+            Console.WriteLine("type something to go back");
             string goBack = Console.ReadLine();
-            if(goBack == "1")
+            if (goBack == "1")
+            {
+                Console.Clear();
+                mainMenu();
+            }
+            else
             {
                 Console.Clear();
                 mainMenu();
             }
         }
-
 
     }
 }

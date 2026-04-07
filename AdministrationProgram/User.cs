@@ -9,10 +9,20 @@ namespace AdministrationProgram
 {
     internal class User
     {
+        private int _id;
         private string _name;
         private string _phoneNumber;
         private string _email;
         private int _age;
+
+        public int Id
+        {
+            get
+            {
+                return _id;
+            }
+            private set => _id = value;
+        }
         public string Name
         {
             get
@@ -47,8 +57,9 @@ namespace AdministrationProgram
         }
 
 
-        public User(string name, string phoneNumber, string email, int age)
+        public User(int id, string name, string phoneNumber, string email, int age)
         {
+            _id = id;
             _name = name;
             _phoneNumber = phoneNumber;
             _email = email;
