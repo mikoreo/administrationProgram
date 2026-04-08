@@ -8,6 +8,7 @@ namespace AdministrationProgram
 {
     internal class Program
     {
+        //starts the program
         static void Main(string[] args)
 
         {

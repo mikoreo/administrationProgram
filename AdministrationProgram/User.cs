@@ -66,11 +66,19 @@ namespace AdministrationProgram
             _age = age;
         }
 
+        public void UpdateDetails(string name, string phone, string email, int age)
+        {
+            _name = name;
+            _phoneNumber = phone;
+            _email = email;
+            _age = age;
+        }
 
-  
 
-    
 
-   
+
+
+
+
     }
 }

@@ -20,7 +20,8 @@ namespace AdministrationProgram
                 Console.WriteLine("Welcome, Please choose one of the options below:");
                 Console.WriteLine("1. Add user.");
                 Console.WriteLine("2. show users");
-                Console.WriteLine("3. delete users0");
+                Console.WriteLine("3. delete users");
+                Console.WriteLine("4. edit user");
                 Console.WriteLine("0. close program");
 
 
@@ -47,9 +48,14 @@ namespace AdministrationProgram
                         break;
                     case 2:
                         ShowUsers();
+                        goBack();
                         break;
                     case 3:
                         deleteUsers();
+                        goBack();
+                        break;
+                    case 4:
+                        EditUser();
                         break;
                     case 0:
                         Console.Clear();
@@ -68,7 +74,7 @@ namespace AdministrationProgram
         
 
         private UserManager _userManager = new UserManager();
-
+        // function to create and add a user
         private void AddUser()
         {
             Console.Clear();
@@ -125,6 +131,7 @@ namespace AdministrationProgram
 
             goBack();
         }
+        // function to show the added users
         private void ShowUsers()
         {
             Console.Clear();
@@ -144,6 +151,7 @@ namespace AdministrationProgram
             }
             
         }
+        //function to delete the added users by id
         private void deleteUsers()
         {
             
@@ -152,39 +160,70 @@ namespace AdministrationProgram
             string idInput;
             int idDelete;
 
-            
-            
-            Console.Write("Enter ID you want to delete: ");
-            idInput = Console.ReadLine();
 
-
-            if (int.TryParse(idInput, out idDelete))
+            while (true)
             {
-                _userManager.RemoveById(idDelete);
+                Console.Write("Enter ID you want to delete" +
+                    ": ");
+                idInput = Console.ReadLine();
+
+            
+                if (int.TryParse(idInput, out idDelete))
+                {
+                    _userManager.RemoveById(idDelete);
+                }
+                else
+                {
+
+                    Console.WriteLine("Invalid input. Please enter a number.");
+
+                }
+            }
+
+            
+
+
+        }
+        //function to edit a added user
+        private void EditUser()
+        {
+            Console.Clear();
+            ShowUsers();
+
+            Console.Write("Enter the ID of the user you want to edit: ");
+            if (int.TryParse(Console.ReadLine(), out int idEdit))
+            {
+                
+                Console.WriteLine("Enter New Details");
+
+                Console.Write("New Name: ");
+                string name = Console.ReadLine();
+
+                Console.Write("New Phone: ");
+                string phone = Console.ReadLine();
+
+                Console.Write("New Email: ");
+                string email = Console.ReadLine();
+
+                Console.Write("New Age: ");
+                int.TryParse(Console.ReadLine(), out int age);
+
+                
+                bool works = _userManager.UpdateUser(idEdit, name, phone, email, age);
+
+                if (works)
+                    Console.WriteLine("User updated successfully!");
+                else
+                    Console.WriteLine("User with this ID not found.");
             }
             else
             {
-                deleteUsers();
-                Console.WriteLine("Invalid input. Please enter a number.");
-                
+                Console.WriteLine("Invalid ID.");
             }
 
             goBack();
-
-
         }
-
-        private void searchUser()
-        {
-            Console.Clear();
-            Console.Write("Enter age to filter: ");
-            if (!int.TryParse(Console.ReadLine(), out int searchAge))
-            {
-                Console.WriteLine("Invalid age.");
-                return;
-            }
-        }
-
+        //function to go back after the other functions are done
         private void goBack()
         {
             
